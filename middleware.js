@@ -19,7 +19,7 @@ export default clerkMiddleware(async (auth, req) => {
 
 if (
   userId &&
-  orgId &&
+  !orgId &&
   req.nextUrl.pathname !== "/onboarding" &&
   req.nextUrl.pathname !== "/"
 ) {
