@@ -41,3 +41,38 @@ model Project {
 }
 
 
+model Sprint {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  startDate DateTime
+  endDate   DateTime
+  status    SprintStatus @default(PLANNED)
+  project   Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  projectId String
+  issues    Issue[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Issue {
+  id          String     @id @default(cuid())
+  title       String
+  description String?
+  status      IssueStatus
+  order       Int        // This will store the order within its status column
+  priority    IssuePriority
+  assignee    User?      @relation("Assignee", fields: [assigneeId], references: [id])
+  assigneeId  String?
+  reporter    User       @relation("Reporter", fields: [reporterId], references: [id])
+  reporterId  String
+  project     Project    @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  projectId   String
+  //whenever sprint is deleted set the sprintId to null
+  sprint      Sprint?    @relation(fields: [sprintId], references: [id], onDelete: SetNull)
+  sprintId    String?
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  //index on status and order to make the queries faster and to make the queries more efficient
+  @@index([status, order])
+}
