@@ -16,7 +16,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <ClerkProvider
+    <ClerkProvider dynamic
       appearance={{
         baseTheme: shadesOfPurple,
         variables: {
