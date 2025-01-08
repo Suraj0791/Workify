@@ -24,3 +24,20 @@ model User {
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 }
+
+model Project {
+  id             String   @id @default(cuid())
+  name           String
+  key            String
+  description    String?
+  organizationId String    // This will store the Clerk organization ID
+  sprints        Sprint[]
+  issues         Issue[]
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  //in one organization there can be multiple projects and each project can have multiple issues and sprints . But here we are using unique constraint to ensure that each project has a unique key within its organization.There will be only one project with the same key in an organization.
+  @@unique([organizationId, key])
+}
+
+
