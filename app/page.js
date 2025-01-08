@@ -177,3 +177,6 @@ export default function Home() {
     </div>
   );
 }
+
+
+//this is the end of the page landing page made with hero section faqs and companies carousel and cta section
