@@ -5,7 +5,6 @@ import { SignedIn, SignedOut, SignInButton } from "@clerk/nextjs";
 import UserMenu from "./user-menu";
 import { PenBox } from "lucide-react";
 import Image from "next/image";
-import UserLoading from "./user-loading";
 
 const Header = () => {
   
@@ -41,7 +40,7 @@ const Header = () => {
         </div>
       </nav>
 
-      <UserLoading />
+     
     </header>
   );
 }
