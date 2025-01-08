@@ -5,7 +5,6 @@ import { SignedIn, SignedOut, SignInButton } from "@clerk/nextjs";
 import UserMenu from "./user-menu";
 import { PenBox } from "lucide-react";
 import Image from "next/image";
-import { checkUser } from "@/lib/checkUser";
 import UserLoading from "./user-loading";
 
 const Header = () => {
@@ -17,7 +16,7 @@ const Header = () => {
           <h1 className="text-2xl font-bold">
             <Image
               src={"/logo2.png"}
-              alt="Zscrum Logo"
+              alt="Workify Logo"
               width={200}
               height={56}
               className="h-10 w-auto object-contain"

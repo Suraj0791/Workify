@@ -6,6 +6,12 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -69,4 +75,34 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* @keyframes moveDots {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 80px 80px;
+  }
+} */
+
+.animated-dotted-background {
+  background-color: #0a111f;
+  background-image: radial-gradient(#4a5568 1px, transparent 1px);
+  background-size: 30px 30px;
+  /* animation: moveDots 10s linear infinite; */
+}
+
+
+/* we will use this class in the header to make the title gradient */
+@layer utilities {
+  .gradient-title {
+    @apply font-extrabold bg-gradient-to-br from-blue-500 via-blue-100 to-blue-400 bg-clip-text tracking-tighter text-transparent pr-2 pb-2;
+  }
+}
+
+.wmde-markdown ul {
+  list-style-type: disc;
+  padding-left: 15px !important;
+  color: white;
 }
