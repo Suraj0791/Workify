@@ -76,3 +76,24 @@ model Issue {
   //index on status and order to make the queries faster and to make the queries more efficient
   @@index([status, order])
 }
+
+
+enum SprintStatus {
+  PLANNED
+  ACTIVE
+  COMPLETED
+}
+
+enum IssueStatus {
+  TODO
+  IN_PROGRESS
+  IN_REVIEW
+  DONE
+}
+
+enum IssuePriority {
+  LOW
+  MEDIUM
+  HIGH
+  URGENT
+}
