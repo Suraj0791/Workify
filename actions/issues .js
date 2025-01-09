@@ -36,6 +36,8 @@ export async function createIssue(projectId, data) {
         reporter: true,
       },
     });
+
+    return issue;
   
     
   }
