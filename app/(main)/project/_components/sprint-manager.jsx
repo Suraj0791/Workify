@@ -126,7 +126,12 @@ export default function SprintManager({
           </Button>
         )}
       </div>
-      
+      {loading && <BarLoader width={"100%"} className="mt-2" color="#36d7b7" />}
+      {getStatusText() && (
+        <Badge variant="" className="mt-3 ml-1 self-start">
+          {getStatusText()}
+        </Badge>
+      )}
     </>
   );
 }
