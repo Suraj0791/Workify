@@ -88,3 +88,42 @@ export async function createIssue(projectId, data) {
     return { success: true };
   }
   
+
+  export async function updateIssue(issueId, data) {
+    const { userId, orgId } = auth();
+  
+    if (!userId || !orgId) {
+      throw new Error("Unauthorized");
+    }
+  
+    try {
+      const issue = await db.issue.findUnique({
+        where: { id: issueId },
+        include: { project: true },
+      });
+  
+      if (!issue) {
+        throw new Error("Issue not found");
+      }
+  
+      if (issue.project.organizationId !== orgId) {
+        throw new Error("Unauthorized");
+      }
+  
+      const updatedIssue = await db.issue.update({
+        where: { id: issueId },
+        data: {
+          status: data.status,
+          priority: data.priority,
+        },
+        include: {
+          assignee: true,
+          reporter: true,
+        },
+      });
+  
+      return updatedIssue;
+    } catch (error) {
+      throw new Error("Error updating issue: " + error.message);
+    }
+  }
