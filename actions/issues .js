@@ -45,7 +45,7 @@ export async function createIssue(projectId, data) {
  
 
   export async function getIssuesForSprint(sprintId) {
-    const { userId, orgId } = auth();
+    const { userId, orgId } = await auth();
   
     if (!userId || !orgId) {
       throw new Error("Unauthorized");
