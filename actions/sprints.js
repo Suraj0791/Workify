@@ -33,7 +33,7 @@ export async function createSprint(projectId, data) {
 }
 
 export async function updateSprintStatus(sprintId, newStatus) {
-    const { userId, orgId, orgRole } = auth();
+    const { userId, orgId, orgRole } =await auth();
   
     if (!userId || !orgId) {
       throw new Error("Unauthorized");

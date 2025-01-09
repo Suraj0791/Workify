@@ -164,39 +164,39 @@ export async function createIssue(projectId, data) {
     return { success: true };
   }
 
-  export async function getUserIssues(userId) {
-    const {  orgId } = await auth();
+//   export async function getUserIssues(userId) {
+//     const {  orgId } = await auth();
 
-    if (!userId || !orgId) {
-        throw new Error("Unauthorized");
-    }
+//     if (!userId || !orgId) {
+//         throw new Error("Unauthorized");
+//     }
 
-    const users = await db.user.findMany({ where: {clerkUserId: userId } });
-    if (!users) {
-        throw new Error("User not found");
-    }
+//     const users = await db.user.findMany({ where: {clerkUserId: userId } });
+//     if (!users) {
+//         throw new Error("User not found");
+//     }
 
-    const issues = await db.issue.findMany({ where:
-        {
-            OR:[
-                {assigneeId: users.id},
-                {reporterId: users.id}
-            ],
-            project: {
-                organizationId: orgId
-            },
+//     const issues = await db.issue.findMany({ where:
+//         {
+//             OR:[
+//                 {assigneeId: users.id},
+//                 {reporterId: users.id}
+//             ],
+//             project: {
+//                 organizationId: orgId
+//             },
 
-        },
-        include: {
-            assignee: true,
-            reporter: true,
-            project: true,
-        },
-        orderBy: {
-            updatedAt: "desc",
-        },
-    });
+//         },
+//         include: {
+//             assignee: true,
+//             reporter: true,
+//             project: true,
+//         },
+//         orderBy: {
+//             updatedAt: "desc",
+//         },
+//     });
 
-    return issues;
+//     return issues;
 
-}
+// }
