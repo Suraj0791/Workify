@@ -127,3 +127,39 @@ export async function createIssue(projectId, data) {
       throw new Error("Error updating issue: " + error.message);
     }
   }
+
+  export async function deleteIssue(issueId) {
+    const { userId, orgId } = auth();
+  
+    if (!userId || !orgId) {
+      throw new Error("Unauthorized");
+    }
+  
+    const user = await db.user.findUnique({
+      where: { clerkUserId: userId },
+    });
+  
+    if (!user) {
+      throw new Error("User not found");
+    }
+  
+    const issue = await db.issue.findUnique({
+      where: { id: issueId },
+      include: { project: true },
+    });
+  
+    if (!issue) {
+      throw new Error("Issue not found");
+    }
+  
+    if (
+      issue.reporterId !== user.id &&
+      !issue.project.adminIds.includes(user.id)
+    ) {
+      throw new Error("You don't have permission to delete this issue");
+    }
+  
+    await db.issue.delete({ where: { id: issueId } });
+  
+    return { success: true };
+  }
