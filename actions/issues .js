@@ -90,7 +90,7 @@ export async function createIssue(projectId, data) {
   
 
   export async function updateIssue(issueId, data) {
-    const { userId, orgId } = auth();
+    const { userId, orgId } = await auth();
   
     if (!userId || !orgId) {
       throw new Error("Unauthorized");
@@ -129,7 +129,7 @@ export async function createIssue(projectId, data) {
   }
 
   export async function deleteIssue(issueId) {
-    const { userId, orgId } = auth();
+    const { userId, orgId } = await auth();
   
     if (!userId || !orgId) {
       throw new Error("Unauthorized");
