@@ -4,7 +4,7 @@ import { db } from "@/lib/prisma";
 import { auth, clerkClient } from "@clerk/nextjs/server";
 
 export async function createProject(data) {
-  const { userId, orgId } = await auth();
+  const { userId, orgId } =  auth();
 
   if (!userId) {
     throw new Error("Unauthorized");
@@ -45,7 +45,7 @@ export async function createProject(data) {
 }
 
 export async function getProject(projectId) {
-  const { userId, orgId } = await auth();
+  const { userId, orgId } =  auth();
 
   if (!userId || !orgId) {
     throw new Error("Unauthorized");
@@ -83,7 +83,7 @@ export async function getProject(projectId) {
 }
 
 export async function deleteProject(projectId) {
-  const { userId, orgId, orgRole } = await auth();
+  const { userId, orgId, orgRole } = auth();
 
   if (!userId || !orgId) {
     throw new Error("Unauthorized");

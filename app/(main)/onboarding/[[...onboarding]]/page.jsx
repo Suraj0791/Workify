@@ -4,6 +4,8 @@ import { OrganizationList, useOrganization } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
+
+
 // A slug is a part of a URL that uniquely identifies a resource in a readable and SEO-friendly way. It's often used to replace IDs or technical identifiers with a more human-readable and descriptive string. For example:
 
 // Instead of: /organization/12345
