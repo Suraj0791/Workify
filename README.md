@@ -1,36 +1,112 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# WORKIFY 
 
-## Getting Started
+This project is a Jira-like application built with modern web technologies. The application provides comprehensive functionality for managing organizations, projects, sprints, and issues with a beautiful and user-friendly interface.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Landing Page**: A visually appealing landing page to welcome users.
+- **User Authentication**: Supports OAuth login as well as email/password authentication using Clerk.
+- **Organization Management**:
+  - Users can create, manage, and join organizations.
+  - Assign and manage projects within organizations.
+- **Project Management**:
+  - Users can view projects assigned to them.
+  - Create and manage sprints within projects.
+- **Issues Management**:
+  - Users can create and manage issues.
+  - Drag-and-drop functionality to move issues across four sections: `To Do`, `In Progress`, `In Review`, and `Done`.
+- **Sprint Management**:
+  - Create sprints.
+  - Start and end sprints.
+- **Responsive Design**: Fully responsive, ensuring a seamless experience across all devices.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Tech Stack
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### Frontend
+- **Next.js**: React framework for building performant and scalable web applications.
+- **ShadCN UI**: For pre-built components and a consistent design system.
+- **Tailwind CSS**: For highly customizable and efficient styling.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Backend
+- **Prisma**: ORM for seamless database interactions.
+- **PostgreSQL (Neon DB)**: Relational database to store application data.
 
-## Learn More
+### Authentication
+- **Clerk**: For managing user authentication and organization-related functionalities.
 
-To learn more about Next.js, take a look at the following resources:
+### Deployment
+- Deployed using VERCEL
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### ENV 
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
+CLERK_SECRET_KEY=
+NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
+NEXT_PUBLIC_CLERK_SIGN_OUT_URL=/sign-out
+NEXT_PUBLIC_AFTER_SIGN_IN_URL=/onboarding
+NEXT_PUBLIC_AFTER_SIGN_UP_URL=/onboarding
+DATABASE_URL=
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+## How to Run Locally
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Prerequisites
+1. Install Node.js (>= 14).
+2. Install Dependecies using npm i
+3. Set up a PostgreSQL database (or use Neon DB).
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Steps
+1. Clone the repository:
+   ```bash
+   git clone <repository_url>
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd jira-clone
+   ```
+3. Install dependencies:
+   ```bash
+   yarn install
+   ```
+4. Set up environment variables:
+   - Create a `.env` file in the root directory.
+   - Add the following variables:
+     ```env
+     DATABASE_URL=<your_postgresql_database_url>
+     NEXT_PUBLIC_CLERK_FRONTEND_API=<your_clerk_frontend_api_key>
+     CLERK_API_KEY=<your_clerk_backend_api_key>
+     ```
+5. Run database migrations:
+   ```bash
+   npx prisma migrate dev
+   ```
+6. Start the development server:
+   ```bash
+   yarn dev
+   ```
+7. Open your browser and navigate to `http://localhost:3000`.
+
+## Usage
+
+### Authentication
+- Sign in using OAuth or email/password.
+
+### Organizations
+- Create and manage your organization.
+- Assign and manage projects within your organization.
+
+### Projects and Sprints
+- View and manage projects assigned to you.
+- Create sprints and move issues between sections using drag-and-drop.
+
+### Issues
+- Create new issues.
+- Drag issues to different sections (`To Do`, `In Progress`, `In Review`, `Done`).
+
+## Screenshots
+
+![Jira Clone Screenshot](./Screenshot.png)
+
+## License
+This project is licensed under the [MIT License](LICENSE).
+
